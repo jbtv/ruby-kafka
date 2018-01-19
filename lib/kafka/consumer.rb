@@ -423,6 +423,8 @@ module Kafka
         @offset_manager.clear_offsets_excluding(@group.assigned_partitions)
       end
 
+      @fetcher.reset
+
       @group.assigned_partitions.each do |topic, partitions|
         partitions.each do |partition|
           if paused?(topic, partition)
